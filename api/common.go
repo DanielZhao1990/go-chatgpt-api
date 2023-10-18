@@ -146,7 +146,8 @@ func Proxy(c *gin.Context) {
 		c.AbortWithStatusJSON(resp.StatusCode, responseMap)
 		return
 	}
-
+	// 添加代理请求返回类型，防止openai库报错，否则content-type为text/html
+	c.Writer.Header().Set("Content-Type", resp.Header.Get("Content-Type"))
 	io.Copy(c.Writer, resp.Body)
 }
 

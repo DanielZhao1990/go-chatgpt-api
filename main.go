@@ -68,8 +68,12 @@ func setupPlatformAPIs(router *gin.Engine) {
 
 		apiGroup := platformGroup.Group("/v1")
 		{
-			apiGroup.POST("/chat/completions", platform.CreateChatCompletions)
-			apiGroup.POST("/completions", platform.CreateCompletions)
+			//apiGroup.POST("/chat/completions", platform.CreateChatCompletions)
+			//apiGroup.POST("/completions", platform.CreateCompletions)
+			// 不使用api接口，直接使用浏览器聊天
+			apiGroup.POST("/chat/completions", imitate.CreateChatCompletions)
+			apiGroup.POST("/completions", imitate.CreateChatCompletions)
+
 		}
 	}
 }
